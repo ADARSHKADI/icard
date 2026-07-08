@@ -371,24 +371,15 @@ async function loadSTD(){
 
 e.preventDefault();
 
-const data={
-
-std:std.value,
-
-class:cls.value,
-
-roll:roll.value,
-
-name:name.value,
-
-gr:gr.value,
-
-dob:dob.value,
-
-mobile:mobile.value,
-
-address:address.value
-
+const data = {
+    std: document.getElementById("std").value,
+    class: document.getElementById("class").value,
+    roll: document.getElementById("roll").value,
+    name: document.getElementById("name").value.trim(),
+    gr: document.getElementById("gr").value,
+    dob: document.getElementById("dob").value,
+    mobile: document.getElementById("mobile").value,
+    address: document.getElementById("address").value.trim()
 };
 
 if(Object.values(data).includes("")){
