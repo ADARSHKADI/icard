@@ -280,6 +280,243 @@ Save Details
 <script>
 
 // JavaScript yahan aayega
+  const API_URL="YAHAN_APNA_APPS_SCRIPT_WEB_APP_URL";
+
+const std=document.getElementById("std");
+const cls=document.getElementById("class");
+const form=document.getElementById("entryForm");
+
+function showLoading(){
+    document.getElementById("loading").style.display="flex";
+}
+
+function hideLoading(){
+    document.getElementById("loading").style.display="none";
+}
+
+window.onload=()=>{
+    loadSTD();
+}
+
+async function loadSTD(){
+
+    showLoading();
+
+    try{
+
+        const res=await fetch(API_URL+"?action=getSTD");
+
+        const data=await res.json();
+
+        std.innerHTML='<option value="">Select STD</option>';
+
+        data.forEach(s=>{
+
+            std.innerHTML+=`<option value="${s}">${s}</option>`;
+
+        });
+
+    }catch(e){
+
+        Swal.fire("Error","STD Load Failed","error");
+
+    }
+
+    hideLoading();
+
+}
+
+  std.addEventListener("change",async()=>{
+
+    cls.innerHTML='<option>Loading...</option>';
+
+    showLoading();
+
+    const res=await fetch(API_URL+"?action=getClass&std="+std.value);
+
+    const data=await res.json();
+
+    cls.innerHTML='<option value="">Select Class</option>';
+
+    data.forEach(c=>{
+
+        cls.innerHTML+=`<option value="${c}">${c}</option>`;
+
+    });
+
+    hideLoading();
+
+});
+
+  document.getElementById("name").addEventListener("input",function(){
+
+    this.value=this.value.toUpperCase();
+
+});
+
+  document.getElementById("mobile").addEventListener("input",function(){
+
+    this.value=this.value.replace(/\D/g,'');
+
+    if(this.value.length>10){
+
+        this.value=this.value.slice(0,10);
+
+    }
+
+});
+
+
+  form.addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+const data={
+
+std:std.value,
+
+class:cls.value,
+
+roll:roll.value,
+
+name:name.value,
+
+gr:gr.value,
+
+dob:dob.value,
+
+mobile:mobile.value,
+
+address:address.value
+
+};
+
+if(Object.values(data).includes("")){
+
+Swal.fire("Incomplete","Please Fill All Fields","warning");
+
+return;
+
+}
+
+if(data.mobile.length!=10){
+
+Swal.fire("Invalid","Enter 10 Digit Mobile Number","warning");
+
+return;
+
+}
+
+showLoading();
+
+const res=await fetch(API_URL,{
+
+method:"POST",
+
+body:JSON.stringify(data)
+
+});
+
+const result=await res.json();
+
+hideLoading();
+
+if(result.status=="success"){
+
+Swal.fire({
+
+icon:"success",
+
+title:"Entry Saved Successfully",
+
+html:`
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>STD</th>
+
+<td>${data.std}</td>
+
+</tr>
+
+<tr>
+
+<th>CLASS</th>
+
+<td>${data.class}</td>
+
+</tr>
+
+<tr>
+
+<th>ROLL</th>
+
+<td>${data.roll}</td>
+
+</tr>
+
+<tr>
+
+<th>NAME</th>
+
+<td>${data.name}</td>
+
+</tr>
+
+<tr>
+
+<th>GR</th>
+
+<td>${data.gr}</td>
+
+</tr>
+
+<tr>
+
+<th>DOB</th>
+
+<td>${data.dob}</td>
+
+</tr>
+
+<tr>
+
+<th>MOBILE</th>
+
+<td>${data.mobile}</td>
+
+</tr>
+
+<tr>
+
+<th>ADDRESS</th>
+
+<td>${data.address}</td>
+
+</tr>
+
+</table>
+
+`
+
+});
+
+form.reset();
+
+cls.innerHTML='<option value="">Select Class</option>';
+
+}
+else{
+
+Swal.fire("Error",result.message,"error");
+
+}
+
+});
+
+  
 
 </script>
 
