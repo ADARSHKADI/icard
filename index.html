@@ -494,9 +494,18 @@ html:`
 
 });
 
+const selectedSTD = std.value;
+const selectedClass = cls.value;
+
+// Form reset
 form.reset();
 
-cls.innerHTML='<option value="">Select Class</option>';
+// STD aur CLASS wapas set karo
+std.value = selectedSTD;
+cls.value = selectedClass;
+
+// Cursor Roll Number par le jao
+document.getElementById("roll").focus();
 
 }
 else{
