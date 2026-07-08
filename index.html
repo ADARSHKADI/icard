@@ -14,25 +14,26 @@
 <style>
 
 body{
-    font-family: 'Segoe UI', sans-serif;
     min-height:100vh;
+    font-family:'Segoe UI',sans-serif;
 
-    background-color:#f4f8ff;
-
-    background-image:
-    radial-gradient(circle at 25px 25px, rgba(13,71,161,.08) 2px, transparent 2px),
-    radial-gradient(circle at 75px 75px, rgba(13,71,161,.06) 2px, transparent 2px);
-
-    background-size:100px 100px;
+    background:
+    radial-gradient(circle at top left,#d8e9ff 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#cfe3ff 0%,transparent 30%),
+    linear-gradient(135deg,#eef5ff,#ffffff);
 }
 
 .card{
 
 border:none;
 
-border-radius:20px;
+border-radius:25px;
 
-box-shadow:0 15px 35px rgba(0,0,0,.15);
+background:rgba(255,255,255,.95);
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 20px 50px rgba(0,0,0,.15);
 
 }
 
