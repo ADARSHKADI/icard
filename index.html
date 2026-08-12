@@ -1,105 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>I Card Entry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Registration</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
 body{
-    min-height:100vh;
-    font-family:'Segoe UI',sans-serif;
 
-    background:
-    radial-gradient(circle at top left,#d8e9ff 0%,transparent 30%),
-    radial-gradient(circle at bottom right,#cfe3ff 0%,transparent 30%),
-    linear-gradient(135deg,#eef5ff,#ffffff);
-}
-
-.card{
-    background:#475569;
-    color:#fff;
-    border:none;
-    border-radius:16px;
-    box-shadow:0 6px 15px rgba(0,0,0,.15);
-}
-
-.school-title{
-
-font-size:30px;
-
-font-weight:700;
-
-color:#FFF;
+background:#edf2f7;
 
 }
 
-.sub-title{
+.sticky-progress{
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: white;
+    padding: 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+.container-box{
 
-font-size:22px;
+max-width:850px;
 
-font-weight:600;
+margin:30px auto;
 
-color:#dbeafe;
+background:#fff;
+
+border-radius:18px;
+
+padding:25px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
 
 }
 
-.form-control,
-.form-select{
+.title{
 
-border-radius:12px;
-
-height:48px;
-
-}
-
-textarea.form-control{
-
-height:100px;
-
-}
-
-.btn-save{
-
-height:50px;
-
-font-size:18px;
+font-size:28px;
 
 font-weight:bold;
 
-border-radius:12px;
+text-align:center;
+
+color:#0d6efd;
+
+margin-bottom:25px;
 
 }
 
-#loading{
+.form-label{
 
-position:fixed;
+font-weight:600;
 
-left:0;
+}
 
-top:0;
+.photo-preview{
+
+width:160px;
+
+height:200px;
+
+border:2px dashed #0d6efd;
+
+margin:auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+overflow:hidden;
+
+border-radius:10px;
+
+background:#fafafa;
+
+}
+
+.photo-preview img{
 
 width:100%;
 
 height:100%;
 
-background:rgba(255,255,255,.8);
+object-fit:cover;
 
 display:none;
 
-justify-content:center;
+}
 
-align-items:center;
+.progress{
 
-z-index:9999;
+height:8px;
 
+margin-bottom:20px;
+
+}
+
+.progress-bar{
+
+width:0%;
+
+transition:.4s;
+
+}
+
+
+/* Mandatory field red star */
+.form-label::after {
+    content: " *";
+    color: #dc3545;
+    font-weight: 700;
+    margin-left: 3px;
+}
+
+/* =========================================================
+   GITHUB PAGES / MOBILE RESPONSIVE FIX
+   ========================================================= */
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+}
+
+.form-control,
+.form-select,
+textarea,
+input[type="file"] {
+    max-width: 100%;
+}
+
+@media (max-width: 767.98px) {
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .container-box {
+        width: 100%;
+        max-width: 100%;
+        margin: 12px auto;
+        padding: 18px 14px;
+        border-radius: 14px;
+    }
+
+    .title {
+        font-size: 21px;
+        line-height: 1.3;
+        margin-bottom: 18px;
+    }
+
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .col-md-6,
+    .col-12 {
+        width: 100%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .form-control,
+    .form-select {
+        width: 100%;
+        min-height: 42px;
+        font-size: 16px;
+    }
+
+    textarea.form-control {
+        min-height: 90px;
+    }
+
+    .photo-preview {
+        width: 115px;
+        height: 155px;
+    }
+
+    #photo {
+        width: 100%;
+    }
+
+    #submitBtn {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .sticky-progress {
+        padding: 5px 0;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+
+    .container-box {
+        padding: 15px 11px;
+    }
+
+    .title {
+        font-size: 19px;
+    }
+
+    .photo-preview {
+        width: 105px;
+        height: 140px;
+    }
 }
 
 </style>
@@ -108,148 +261,249 @@ z-index:9999;
 
 <body>
 
-<div id="loading">
+<div class="container">
 
-<div class="spinner-border text-primary"
-style="width:4rem;height:4rem"></div>
+<div class="container-box">
 
-</div>
+<div class="title">
 
-<div class="container py-5">
-
-<div class="row justify-content-center">
-
-<div class="col-lg-8">
-
-<div class="card">
-
-<div class="card-body p-4">
-
-<div class="text-center mb-4">
-
-<h2 class="school-title">
-પી.એમ.જી. ઠાકર આદર્શ હાઇસ્કૂલ, કડી 
-</h2>
-
-<h4 class="sub-title">
-I-Card વિગત 2026-27
-</h4>
+Teacher Registration For ICard Generation
 
 </div>
 
+<div class="sticky-progress">
+    <div class="progress" style="height:8px;">
+        <div id="progressBar" class="progress-bar bg-success" style="width:0%"></div>
+    </div>
+</div>
 
-
-
-
-  <form id="entryForm">
+<form id="teacherForm">
 
 <div class="row">
 
 <div class="col-md-6 mb-3">
 
-<label>ધોરણ</label>
+<label class="form-label">
 
-<select class="form-select" id="std">
-<option value="">ધોરણ પસંદ કરો </option>
+Employee ID
+
+</label>
+
+<input
+    type="text"
+    id="employeeID"
+    class="form-control"
+    maxlength="10"
+    inputmode="numeric"
+    required>
+
+<small id="empStatus" class="fw-bold"></small>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Full Name
+
+</label>
+
+<input
+
+type="text"
+
+id="fullName"
+
+class="form-control"
+
+style="text-transform:uppercase"
+
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Designation
+
+</label>
+
+<select
+id="designation"
+class="form-select"
+required>
+
+<option value="">Select Designation</option>
+
+<option>Principal</option>
+<option>Vice Principal</option>
+<option>Teacher</option>
+<option>Clerk</option>
+<option>Peon</option>
+<option>Lab Assistant</option>
+<option>Librarian</option>
+<option>Accountant</option>
+<option>Other</option>
+
 </select>
 
 </div>
 
 <div class="col-md-6 mb-3">
 
-<label>વર્ગ </label>
+<label class="form-label">
 
-<select class="form-select" id="class">
-<option value="">વર્ગ પસંદ કરો</option>
-</select>
+Mobile Number
 
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label>રોલ નંબર (અંગ્રેજી અંકોમાં)</label>
-
-<input type="number"
-id="roll"
-class="form-control">
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label> વિદ્યાર્થીનું પૂરું નામ (અંગ્રેજી કેપિટલ)</label>
+</label>
 
 <input
 type="text"
-id="name"
-class="form-control"
-style="text-transform:uppercase;">
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label>GR નંબર ( અંગ્રેજી આંકડા)</label>
-
-<input
-type="number"
-id="gr"
-class="form-control">
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label>જન્મ તારીખ </label>
-
-<input
-type="date"
-id="dob"
-class="form-control">
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label>મોબાઈલ નંબર ( અંગ્રેજી અંકોમાં  , 10 આંકડામાં ) </label>
-
-<input
-
-type="tel"
-
-maxlength="10"
-
-pattern="[0-9]{10}"
-
 id="mobile"
+class="form-control"
+maxlength="10"
+placeholder="10 Digit Mobile Number"
+required>
 
-class="form-control">
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Blood Group
+
+</label>
+
+<select
+id="bloodGroup"
+class="form-select"
+required>
+
+<option value="">Select Blood Group</option>
+
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Date of Birth
+
+</label>
+
+<input
+type="text"
+id="dob"
+class="form-control"
+placeholder="DD-MM-YYYY"
+maxlength="10"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Date of Joining
+
+</label>
+
+<input
+type="text"
+id="doj"
+class="form-control"
+placeholder="DD-MM-YYYY"
+maxlength="10"
+required>
 
 </div>
 
 <div class="col-12 mb-3">
 
-<label>સરનામું (અંગ્રેજીમાં)</label>
+<label class="form-label">
+
+Address
+
+</label>
 
 <textarea
-
 id="address"
+class="form-control"
+rows="3"
+maxlength="250"
+required></textarea>
 
-class="form-control">
+<div class="text-end">
 
-</textarea>
+<small>
+
+<span id="addressCount">0</span>/250
+
+</small>
 
 </div>
 
-<div class="col-12">
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label class="form-label">
+
+Teacher Photo
+
+</label>
+
+<input
+type="file"
+id="photo"
+class="form-control"
+accept="image/*"
+capture="environment">
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="photo-preview">
+
+<img id="previewImage">
+
+<span id="photoText">
+
+Photo Preview
+
+</span>
+
+</div>
+
+</div>
+
+<div class="col-12 text-center mt-3">
 
 <button
-type="submit"
-class="btn btn-primary w-100 btn-save">
+type="button"
+class="btn btn-primary btn-lg px-5"
+id="submitBtn">
 
-<i class="bi bi-save"></i>
+<i class="fa-solid fa-floppy-disk"></i>
 
-માહિતી સેવ કરો. 
+Save Registration
 
 </button>
 
@@ -259,146 +513,308 @@ class="btn btn-primary w-100 btn-save">
 
 </form>
 
+</div>
+
+</div>
 
 
+
+<!-- Photo Crop Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Crop Teacher Photo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+
+        <div style="max-height:500px;">
+          <img id="cropImage" style="max-width:100%;">
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <button type="button"
+                class="btn btn-success"
+                id="cropBtn">
+          Crop & Use Photo
+        </button>
+
+      </div>
+
+    </div>
   </div>
-
 </div>
 
-</div>
 
-</div>
 
-</div>
 
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script>
+  const SCRIPT_URL="https://script.google.com/macros/s/AKfycbxqbOUdc-aiEN4pyfmEep-g9ND8dJDCZHidLnDPTNd_UtcUbqcfV4c_4jzHlJ6oy7D7hA/exec";
 
-// JavaScript yahan aayega
-  const API_URL="https://script.google.com/macros/s/AKfycbwwvhNGkICcpfYeAeMuGHf5DKwRk4-6kQyM4FMfg1V6W5gc00icdmu1YaPPqgX1HwNXDw/exec";
+let cropper;
+let cropModal;
+let photoBase64 = "";
 
-const std=document.getElementById("std");
-const cls=document.getElementById("class");
-const form=document.getElementById("entryForm");
 
-function showLoading(){
-    document.getElementById("loading").style.display="flex";
-}
 
-function hideLoading(){
-    document.getElementById("loading").style.display="none";
-}
 
-window.onload=()=>{
-    loadSTD();
-}
 
-async function loadSTD(){
+const photoInput = document.getElementById("photo");
+const cropImage = document.getElementById("cropImage");
+const preview = document.getElementById("previewImage");
+const photoText = document.getElementById("photoText");
 
-    showLoading();
+photoInput.addEventListener("change", function(e){
 
-    try{
+    const file = e.target.files[0];
 
-        const res=await fetch(API_URL+"?action=getSTD");
+    if(!file) return;
 
-        const data=await res.json();
+    const reader = new FileReader();
 
-        std.innerHTML='<option value="">Select STD</option>';
+    reader.onload = function(event){
 
-        data.forEach(s=>{
+        cropImage.src = event.target.result;
 
-            std.innerHTML+=`<option value="${s}">${s}</option>`;
+        cropModal = new bootstrap.Modal(
+            document.getElementById("cropModal")
+        );
 
-        });
-
-    }catch(e){
-
-        Swal.fire("Error","STD Load Failed","error");
+        cropModal.show();
 
     }
 
-    hideLoading();
+    reader.readAsDataURL(file);
 
-}
+});
 
-  std.addEventListener("change",async()=>{
 
-    cls.innerHTML='<option>Loading...</option>';
+document.getElementById("cropModal").addEventListener("shown.bs.modal",function(){
 
-    showLoading();
+    if(cropper){
+        cropper.destroy();
+    }
 
-    const res=await fetch(API_URL+"?action=getClass&std="+std.value);
+    cropper = new Cropper(cropImage,{
 
-    const data=await res.json();
+        aspectRatio:3/4,
 
-    cls.innerHTML='<option value="">Select Class</option>';
+        viewMode:1,
 
-    data.forEach(c=>{
+        autoCropArea:1,
 
-        cls.innerHTML+=`<option value="${c}">${c}</option>`;
+        movable:true,
+
+        zoomable:true,
+
+        scalable:false,
+
+        rotatable:false
 
     });
 
-    hideLoading();
-
 });
 
-  document.getElementById("name").addEventListener("input",function(){
 
-    this.value=this.value.toUpperCase();
 
-});
 
-  document.getElementById("mobile").addEventListener("input",function(){
 
-    this.value=this.value.replace(/\D/g,'');
+document.getElementById("cropBtn").addEventListener("click", function () {
 
-    if(this.value.length>10){
+    
 
-        this.value=this.value.slice(0,10);
-
+    if (!cropper) {
+        alert("Cropper is NULL");
+        return;
     }
 
+    const canvas = cropper.getCroppedCanvas({
+        width: 300,
+        height: 400,
+        imageSmoothingQuality: "high"
+    });
+
+    if (!canvas) {
+        alert("Canvas Not Created");
+        return;
+    }
+
+    photoBase64 = canvas.toDataURL("image/jpeg", 0.9);
+
+    preview.src = photoBase64;
+    preview.style.display = "block";
+    photoText.style.display = "none";
+
+    cropper.destroy();
+    cropper = null;
+
+    cropModal.hide();
+
+    
+
 });
 
 
-  form.addEventListener("submit",async function(e){
 
-e.preventDefault();
 
-const data = {
-    std: document.getElementById("std").value,
-    class: document.getElementById("class").value,
-    roll: document.getElementById("roll").value,
-    name: document.getElementById("name").value.trim(),
-    gr: document.getElementById("gr").value,
-    dob: document.getElementById("dob").value,
-    mobile: document.getElementById("mobile").value,
-    address: document.getElementById("address").value.trim()
+//==============================
+// ADDRESS COUNTER
+//==============================
+
+const address=document.getElementById("address");
+
+const addressCount=document.getElementById("addressCount");
+
+address.addEventListener("input",function(){
+
+addressCount.innerHTML=this.value.length;
+
+});
+
+
+
+const employeeID = document.getElementById("employeeID");
+
+employeeID.addEventListener("input", function () {
+
+    // માત્ર Numbers Allow
+    this.value = this.value.replace(/\D/g, "");
+
+});
+
+//==============================
+// NAME UPPERCASE
+//==============================
+
+document.getElementById("fullName").addEventListener("input",function(){
+
+this.value=this.value.toUpperCase();
+
+});
+
+//==============================
+// MOBILE VALIDATION
+//==============================
+
+document.getElementById("mobile").addEventListener("input",function(){
+
+this.value=this.value.replace(/\D/g,'');
+
+});
+
+//==============================
+// PROGRESS BAR
+//==============================
+
+const form=document.getElementById("teacherForm");
+
+form.addEventListener("input",function(){
+
+let total=8;
+
+let filled=0;
+
+if(employeeID.value!="") filled++;
+
+if(fullName.value!="") filled++;
+
+if(designation.value!="") filled++;
+
+if(mobile.value.length==10) filled++;
+
+if(bloodGroup.value!="") filled++;
+
+if(dob.value!="") filled++;
+
+if(doj.value!="") filled++;
+
+if(address.value!="") filled++;
+
+document.getElementById("progressBar").style.width=(filled/total*100)+"%";
+
+});
+
+document.getElementById("address").addEventListener("input", function () {
+    this.value = this.value.toUpperCase();
+});
+//==============================
+// SAVE REGISTRATION
+//==============================
+
+document.getElementById("submitBtn").addEventListener("click",saveRegistration);
+
+async function saveRegistration(){
+
+if(employeeID.value==""){
+alert("Enter Employee ID");
+return;
+}
+
+if(fullName.value==""){
+alert("Enter Full Name");
+return;
+}
+
+if(designation.value==""){
+alert("Select Designation");
+return;
+}
+
+if(mobile.value.length!=10){
+alert("Enter Valid Mobile Number");
+return;
+}
+
+if(photoBase64==""){
+alert("Select Photo");
+return;
+}
+
+submitBtn.disabled=true;
+
+submitBtn.innerHTML="Saving...";
+
+const data={
+
+action:"saveTeacher",
+
+employeeID:employeeID.value,
+
+fullName:fullName.value,
+
+designation:designation.value,
+
+mobile:mobile.value,
+
+bloodGroup:bloodGroup.value,
+
+dob:dob.value,
+
+doj:doj.value,
+
+address:address.value,
+
+photo:photoBase64
+
 };
 
-if(Object.values(data).includes("")){
+try{
 
-Swal.fire("Incomplete","Please Fill All Fields","warning");
-
-return;
-
-}
-
-if(data.mobile.length!=10){
-
-Swal.fire("Invalid","Enter 10 Digit Mobile Number","warning");
-
-return;
-
-}
-
-showLoading();
-
-const res=await fetch(API_URL,{
+const response=await fetch(SCRIPT_URL,{
 
 method:"POST",
 
@@ -406,118 +822,143 @@ body:JSON.stringify(data)
 
 });
 
-const result=await res.json();
+const result=await response.json();
 
-hideLoading();
-
-if(result.status=="success"){
+if(result.status){
 
 Swal.fire({
-
-icon:"success",
-
-title:"Entry Saved Successfully",
-
-html:`
-
-<table class="table table-bordered">
-
-<tr>
-
-<th>STD</th>
-
-<td>${data.std}</td>
-
-</tr>
-
-<tr>
-
-<th>CLASS</th>
-
-<td>${data.class}</td>
-
-</tr>
-
-<tr>
-
-<th>ROLL</th>
-
-<td>${data.roll}</td>
-
-</tr>
-
-<tr>
-
-<th>NAME</th>
-
-<td>${data.name}</td>
-
-</tr>
-
-<tr>
-
-<th>GR</th>
-
-<td>${data.gr}</td>
-
-</tr>
-
-<tr>
-
-<th>DOB</th>
-
-<td>${data.dob}</td>
-
-</tr>
-
-<tr>
-
-<th>MOBILE</th>
-
-<td>${data.mobile}</td>
-
-</tr>
-
-<tr>
-
-<th>ADDRESS</th>
-
-<td>${data.address}</td>
-
-</tr>
-
-</table>
-
-`
-
+    icon: "success",
+    title: "Registration Successful",
+    text: "Teacher details have been saved successfully.",
+    confirmButtonColor: "#198754",
+    timer: 2500,
+    showConfirmButton: false
 });
 
-const selectedSTD = std.value;
-const selectedClass = cls.value;
+teacherForm.reset();
 
-// Form reset
-form.reset();
+preview.style.display="none";
 
-// STD aur CLASS wapas set karo
-std.value = selectedSTD;
-cls.value = selectedClass;
+photoText.style.display="block";
 
-// Cursor Roll Number par le jao
-document.getElementById("roll").focus();
+photoBase64="";
+
+addressCount.innerHTML="0";
+
+progressBar.style.width="0%";
 
 }
 else{
 
-Swal.fire("Error",result.message,"error");
+alert(result.message);
 
 }
 
+}
+catch(e){
+
+alert("Network Error");
+
+}
+
+submitBtn.disabled=false;
+
+submitBtn.innerHTML="Save Registration";
+
+}
+
+
+//==============================
+// SMART DATE FORMAT
+//==============================
+
+function autoDateFormat(input){
+
+input.addEventListener("input",function(){
+
+let value=this.value.replace(/\D/g,"");
+
+if(value.length>8)
+value=value.substring(0,8);
+
+let result="";
+
+if(value.length>=2)
+result=value.substring(0,2);
+else
+result=value;
+
+if(value.length>2)
+result+="-"+value.substring(2,4);
+
+if(value.length>4)
+result+="-"+value.substring(4,8);
+
+this.value=result;
+
 });
 
-  
+}
+
+autoDateFormat(document.getElementById("dob"));
+autoDateFormat(document.getElementById("doj"));
+
+//==============================
+// EMPLOYEE ID LIVE CHECK
+//==============================
+
+employeeID.addEventListener("blur",checkEmployeeIDLive);
+
+async function checkEmployeeIDLive(){
+
+if(employeeID.value.trim()==""){
+
+empStatus.innerHTML="";
+return;
+
+}
+
+try{
+
+const response=await fetch(SCRIPT_URL,{
+
+method:"POST",
+
+body:JSON.stringify({
+
+action:"checkEmployeeID",
+
+employeeID:employeeID.value.trim()
+
+})
+
+});
+
+const result=await response.json();
+
+if(result.status){
+
+empStatus.innerHTML="<span style='color:green'>✓ Employee ID Available</span>";
+
+}
+else{
+
+empStatus.innerHTML="<span style='color:red'>✖ Employee ID Already Exists</span>";
+
+}
+
+}
+catch(e){
+
+empStatus.innerHTML="<span style='color:orange'>Unable to Check</span>";
+
+}
+
+}
 
 </script>
 
-</body>
 
+
+</body>
 </html>
