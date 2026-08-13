@@ -435,7 +435,23 @@ required>
 
 </div>
 
+<div class="col-md-6 mb-3">
 
+<label class="form-label">
+
+Retire Date
+
+</label>
+
+<input
+type="text"
+id="retireDate"
+class="form-control"
+placeholder="DD-MM-YYYY"
+maxlength="10"
+required>
+
+</div>
 
 <div class="col-12 mb-3">
 
@@ -494,24 +510,6 @@ Photo Preview
 </span>
 
 </div>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-
-Retire Date
-
-</label>
-
-<input
-type="text"
-id="retireDate"
-class="form-control"
-placeholder="DD-MM-YYYY"
-maxlength="10"
-required>
 
 </div>
 
@@ -584,7 +582,7 @@ Save Registration
 
 
 <script>
-  const SCRIPT_URL="https://script.google.com/macros/s/AKfycby_bQgMknffb4WsEEagNdkXISihWJrgdAl6A7zB9Nyo7erzqix3S0oYP93f9shwS2EqPQ/exec";
+  const SCRIPT_URL="https://script.google.com/macros/s/AKfycbxqbOUdc-aiEN4pyfmEep-g9ND8dJDCZHidLnDPTNd_UtcUbqcfV4c_4jzHlJ6oy7D7hA/exec";
 
 let cropper;
 let cropModal;
@@ -796,7 +794,7 @@ alert("Enter Valid Mobile Number");
 return;
 }
 
-if(retireDate.value==""){
+if(document.getElementById("retireDate").value.trim()==""){
 alert("Enter Retire Date");
 return;
 }
@@ -827,6 +825,8 @@ bloodGroup:bloodGroup.value,
 dob:dob.value,
 
 doj:doj.value,
+
+    retireDate: retireDate.value,
 
 address:address.value,
 
